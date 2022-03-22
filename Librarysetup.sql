@@ -45,8 +45,9 @@ create table LOANS(
 	ID smallint not null primary key AUTO_INCREMENT,
     PersonID smallint not null,
     BookID smallint not null,
-    LoanDate timestamp not null,
+    LoanDate date not null,
     ReturnDate date,
-    foreign key(PersonID) references PERSON(ID),
+    foreign key (PersonID) references PERSON(ID),
     foreign key (BookID) references BOOKS(ID));
+ 
 	
