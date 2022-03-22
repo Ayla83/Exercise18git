@@ -1,17 +1,9 @@
 -- create database
-create database Exercise18DB;
+create database if not exists Exercise18DB;
 
 use Exercise18DB;
 
 -- create tables
-create table PERSON(
-	ID smallint not null primary key AUTO_INCREMENT,
-    FirstName varchar(35) not null,
-    LastName varchar(35) not null,
-    Address smallint not null,
-    Personal smallint not null,
-    foreign key(Address) references ADDRESSES(ID),
-    foreign key(Personal) references PERSONALDETAILS(ID));
     
 create table ADDRESSES(
 	ID smallint not null primary key AUTO_INCREMENT,
@@ -28,6 +20,19 @@ create table PERSONALDETAILS(
     User_cat enum('Staff', 'Child', 'Adult') not null,
     Gender varchar(35));
 
+create table PERSON(
+	ID smallint not null primary key AUTO_INCREMENT,
+    FirstName varchar(35) not null,
+    LastName varchar(35) not null,
+    Address smallint not null,
+    Personal smallint not null,
+    foreign key(Address) references ADDRESSES(ID),
+    foreign key(Personal) references PERSONALDETAILS(ID));
+
+create table GENRES(
+	ID smallint not null primary key AUTO_INCREMENT,
+    Genre varchar(35) not null);
+    
 create table BOOKS(
 	ID smallint not null primary key AUTO_INCREMENT,
     BookTitle varchar(200) not null,
@@ -37,10 +42,6 @@ create table BOOKS(
     CheckOutStatus enum('available', 'due') not null,
     foreign key(Genre) references GENRES(ID));
     
-create table GENRES(
-	ID smallint not null primary key AUTO_INCREMENT,
-    Genre varchar(35) not null);
-    
 create table LOANS(
 	ID smallint not null primary key AUTO_INCREMENT,
     PersonID smallint not null,
@@ -49,5 +50,4 @@ create table LOANS(
     ReturnDate date,
     foreign key (PersonID) references PERSON(ID),
     foreign key (BookID) references BOOKS(ID));
- 
 	
